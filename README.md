@@ -4,11 +4,11 @@ Tarkvaratehnika projekt - Spordivarustuse rentimise veebirakendus ehk lühidalt 
 
 ## Projekti idee lühikirjeldus
 
-TODO
+Projekti idee seisneb spordivarustuse rentimisteenust pakkuvas veebirakenduses. Kasutajad saavad laenutada valikus olevaid tooteid ning hiljem ka enda varustust rendile anda. 
 
 ## MVP
 
-MVP - Antud aine raames keskendume spordivarustuse rentimise funktsionaalsusele ehk 
+Antud aine raames keskendume spordivarustuse rentimise funktsionaalsusele ehk 
 - toodete vaatamine veebilehel
 - toodete lisamine ostukorvi
 - ostukorvi põhjal tellimuse koostamine
@@ -16,8 +16,16 @@ MVP - Antud aine raames keskendume spordivarustuse rentimise funktsionaalsusele 
 ## Projektiplaan iteratsioonide kaupa
 
 ### 1. iteratsioon
-- Kasutajakontode loomise funktsionaalsus, sealhulgas andmebaasiga ühendamine
-- Prototüübi loomine, mis annab aimu kasutajaliidese funktsionaalsuse ja välimuse kohta
+- Kasutajakontode loomise funktsionaalsus, sealhulgas andmebaasiga ühendamine [jätkub 2. iteratsioonis]
+- Prototüübi loomine, mis annab aimu kasutajaliidese funktsionaalsuse ja välimuse kohta 
+- Tööriistade valik ja keskkondade püstiseadmine (Github, Trello, etc.)
+
+### 2. iteratsioon
+- Integratsioon MySQL andmebaasiga
+- Toodete REST API-d
+- Kasutajakontode loomise funktsionaalsus
+- Brauseri sessiooni põhine ostukorv
+
 
 ## Dokumendid Google Drive's
 
