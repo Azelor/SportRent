@@ -1,44 +1,51 @@
 
+
 <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset='utf-8'>
-      <title>Asjade rent</title>
-      <script src="vue.js"></script>
-    </head>
-    <body>
-        <div id="main"><h1>Veebipood vol 1</h1>
-        <a href="#" v-on:click="goTab(0)">Kodu</a>
-        <a href="#" v-on:click="goTab(1)">Pood</a>
-        
-        <div v-if="tabNr==0">
-            <h2>Pealeht</h2>
-        </div>
-        
-        <div v-if="tabNr==1">
-            <h2>Pood</h2>
-	    <button v-on:click="getData()">Andmed</button>
-        <li v-for="item in items">{{item.id}}</li>
-        </div>
-        </div>
-    <script>
-
-        var vm = new Vue({
-
-        el: "#main",
-        data: {
-            tabNr: 0,
-            items: [
-            ],
-        },
-        methods: {
-        goTab: function(a) {this.tabNr = a;},
-	getData: function() {
-		fetch('http://localhost:8080/products',).then(res =>
-            res.json().then(res => this.items = res))
-            ;
-		}
-        }
-        })
-    </script>
-    </body>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Asjade rent</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+      <div id="main"><h1>Veebipood vol 1</h1>
+      <a href="#" v-on:click="goTab(0)">Kodu</a>
+      <a href="#" v-on:click="goTab(1)">Pood</a>
+      
+      <div v-if="tabNr==0">
+          <h2>Pealeht</h2>
+      </div>
+      
+      <div v-if="tabNr==1">
+          <h2>Pood</h2>
+      <button v-on:click="getData()">Andmed</button>
+      <li v-for="item in items">{{item.id}}, {{item.name}}, {{item.description}} <button v-on:click="sendData()">Lisa ostukorvi</button></li>
+      </div>
+      </div>
+  <script>
+      var vm = new Vue({
+      el: "#main",
+      data: {
+          tabNr: 0,
+          items: [
+          ],
+      },
+      methods: {
+      goTab: function(a) {this.tabNr = a;},
+  getData: function() {
+      fetch('http://localhost:8080/products',).then(res =>
+          res.json().then(res => this.items = res))
+          ;
+      },
+  sendData: function() {
+      data = new XMLHttpRequest();
+      var url = "http://localhost:8080/products";
+      data.open("POST", url, true);
+      data.setRequestHeader("Content-type", "application/json");
+      var info = JSON.stringify({"asi":"asi"});
+      data.send(info);
+      }
+      }
+      })
+  </script>
+</body>
