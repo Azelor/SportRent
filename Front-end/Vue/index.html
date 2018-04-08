@@ -1,11 +1,15 @@
 
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset='utf-8'>
     <title>Asjade rent</title>
-    <script src="vue.js"></script>
+    <script src="vue.js"></script
+    <style>
+	div {
+		background-color: black;
+	}
+	</style>
   </head>
   <body>
       <div id="main"><h1>Veebipood vol 1</h1>
@@ -14,6 +18,7 @@
       
       <div v-if="tabNr==0">
           <h2>Pealeht</h2>
+      <a href="#" v-on:click="goTab(2)">Registreeri</a>
       </div>
       
       <div v-if="tabNr==1">
@@ -21,7 +26,15 @@
       <button v-on:click="getData()">Andmed</button>
       <li v-for="item in items">{{item.id}}, {{item.name}}, {{item.description}} <button v-on:click="sendData()">Lisa ostukorvi</button></li>
       </div>
-      </div>
+      
+      <div v-if="tabNr==2">
+	 <h2>Registreerumine</h2>
+	 <form>
+         <input type="text" placeholder="kasutajanimi" v-model="newUser"/><br/>
+         <input type="text" placeholder="salasõna" v-model="newPassWord"/><br/>
+         <input type="submit" value="Registreeru" v-on:click="sendUser"/><br/>
+         </form>
+	    </div>
   <script>
       var vm = new Vue({
       el: "#main",
@@ -43,6 +56,14 @@
       data.open("POST", url, true);
       data.setRequestHeader("Content-type", "application/json");
       var info = JSON.stringify({"asi":"asi"});
+      data.send(info);
+      }, 
+sendUser: function() {
+	data = new XMLHttpRequest();
+      var url = "http://localhost:8080/users";
+      data.open("POST", url, true);
+      data.setRequestHeader("Content-type", "application/json");
+      var info = JSON.stringify({name: this.newName, password: this.newPassWord});
       data.send(info);
       }
       }
