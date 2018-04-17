@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+import Product from '../../components/Product/Product';
 
 class Store extends Component {
-  state = {  }
+  state = {
+    products: []
+  }
+
+  componentDidMount() {
+    axios.get('/products')
+    .then(response => {
+      this.setState({products: response.data});
+      console.log(response);
+    })
+  }
+
   render() {
+    const products = this.state.products.map(product => {
+      return <Product name={product.name}/>
+    });
+
     return (
-      <div>
-        <p>item 1</p>
-        <p>item 2</p>
+      <div className="Store">
+        {products}
       </div>
     );
   }
