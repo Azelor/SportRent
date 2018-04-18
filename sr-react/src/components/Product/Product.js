@@ -4,7 +4,11 @@ import './Product.css';
 
 const product = (props) => (
   <div className="Product">
-    <h1>{props.name}</h1>
+    <img src={props.img} alt="ski" width="180"/>
+    <div className="Name">{props.name}</div>
+    <div className="Brand">{props.brand}</div>
+    <div className="Price">{"€"+props.price}</div>
+    <div>{props.description}</div>
   </div>
 )
 

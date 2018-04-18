@@ -18,7 +18,12 @@ class Store extends Component {
 
   render() {
     const products = this.state.products.map(product => {
-      return <Product name={product.name}/>
+      return <Product 
+      name={product.name}
+      price={product.price}
+      brand={product.brand}
+      img={product.img}
+      />
     });
 
     return (
