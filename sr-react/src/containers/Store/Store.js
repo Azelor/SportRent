@@ -3,27 +3,30 @@ import axios from 'axios';
 
 import Product from '../../components/Product/Product';
 import SelectedProduct from '../../components/SelectedProduct/SelectedProduct';
+import SelectionButtons from '../../components/Navigation/Sidebar/SelectionButtons/SelectionButtons';
 
 class Store extends Component {
   state = {
     products: [],
-    category: "skis"
+    category: "skis",
+    allCategories: ["kek"]
+
   }
 
   componentDidMount() {
     axios.get('/products')
     .then(response => {
-      this.setState({products: response.data});
-      console.log(response);
+      // get unique values from array
+      let uniqueCategories = [... new Set(response.data.map(item => item.category))];
+      this.setState({
+        products: response.data,
+        allCategories: uniqueCategories
+      });
     })
   }
 
-  toggleSkis = () => {
-    this.setState({category: "skis"});
-  };
-
-  toggleSnowboards = () => {
-    this.setState({category: "snowboards"});
+  selectButtonHandler = (param) => {
+    this.setState({category: param});
   };
 
 
@@ -43,8 +46,9 @@ class Store extends Component {
 
     return (
       <div className="Store">
-        <button onClick={this.toggleSkis}>Skis</button>
-        <button onClick={this.toggleSnowboards}>Snowboards</button>
+        <SelectionButtons 
+        categories={this.state.allCategories}
+        selectButtonHandler={this.selectButtonHandler}/>
         {products}
         <SelectedProduct />
       </div>
