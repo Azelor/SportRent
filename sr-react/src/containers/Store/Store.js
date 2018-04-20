@@ -8,7 +8,7 @@ import SelectionButtons from '../../components/Navigation/Sidebar/SelectionButto
 class Store extends Component {
   state = {
     products: [],
-    category: "skis",
+    category: "all",
     allCategories: ["kek"]
 
   }
@@ -17,7 +17,7 @@ class Store extends Component {
     axios.get('/products')
     .then(response => {
       // get unique values from array
-      let uniqueCategories = [... new Set(response.data.map(item => item.category))];
+      let uniqueCategories = ["all",...new Set(response.data.map(item => item.category))];
       this.setState({
         products: response.data,
         allCategories: uniqueCategories
@@ -30,25 +30,35 @@ class Store extends Component {
   };
 
 
-  render() {
-    const products = this.state.products.map(product => {
+  render() { // If category "all" is selected, render all products, else render conditionally, based on selection
+    let products = "";
+    if (this.state.category === "all") {
+      products = this.state.products.map(product => {
+        return <Product 
+        key={product.id}
+        name={product.name}
+        price={product.price}
+        brand={product.brand}
+        img={product.img} />
+    })} else {
+      products = this.state.products.map(product => {
       if (product.category === this.state.category) {
         return <Product 
-      key={product.id}
-      name={product.name}
-      price={product.price}
-      brand={product.brand}
-      img={product.img} />
+        key={product.id}
+        name={product.name}
+        price={product.price}
+        brand={product.brand}
+        img={product.img} />
       } else {
         return null;
       }
-    });
+    })};
 
     return (
       <div className="Store">
         <SelectionButtons 
         categories={this.state.allCategories}
-        selectButtonHandler={this.selectButtonHandler}/>
+        selectButtonHandler={this.selectButtonHandler} />
         {products}
         <SelectedProduct />
       </div>
