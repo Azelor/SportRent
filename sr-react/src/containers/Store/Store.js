@@ -4,13 +4,15 @@ import axios from 'axios';
 import Product from '../../components/Product/Product';
 import SelectedProduct from '../../components/SelectedProduct/SelectedProduct';
 import SelectionButtons from '../../components/Navigation/Sidebar/SelectionButtons/SelectionButtons';
+import './Store.css';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 
 class Store extends Component {
   state = {
     products: [],
     category: "all",
-    allCategories: ["kek"]
-
+    allCategories: ["all"],
+    searchValue: ""
   }
 
   componentDidMount() {
@@ -25,6 +27,12 @@ class Store extends Component {
     })
   }
 
+  searchValueHandler = (event) => {
+    const newValue = event.target.value;
+    this.setState({searchValue: newValue});
+
+  }
+
   selectButtonHandler = (param) => {
     this.setState({category: param});
   };
@@ -34,15 +42,18 @@ class Store extends Component {
     let products = "";
     if (this.state.category === "all") {
       products = this.state.products.map(product => {
+        if (product.name.includes(this.state.searchValue)) {
         return <Product 
         key={product.id}
         name={product.name}
         price={product.price}
         brand={product.brand}
         img={product.img} />
-    })} else {
+    }})} else {
       products = this.state.products.map(product => {
-      if (product.category === this.state.category) {
+      if (product.category === this.state.category
+      && product.name.includes(this.state.searchValue)
+      ) {
         return <Product 
         key={product.id}
         name={product.name}
@@ -55,11 +66,16 @@ class Store extends Component {
     })};
 
     return (
-      <div className="Store">
-        <SelectionButtons 
-        categories={this.state.allCategories}
-        selectButtonHandler={this.selectButtonHandler} />
-        {products}
+      <div>
+        <Toolbar changed={this.searchValueHandler}/>
+        <div className="Sidebar">
+          <SelectionButtons 
+          categories={this.state.allCategories}
+          selectButtonHandler={this.selectButtonHandler} />
+        </div>
+        <div className="Selection">
+          {products}
+        </div>
         <SelectedProduct />
       </div>
     );

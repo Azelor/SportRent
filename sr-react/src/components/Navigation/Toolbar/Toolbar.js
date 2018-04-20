@@ -2,12 +2,17 @@ import React from 'react';
 
 import './Toolbar.css';
 
-const toolbar = () => (
-  <div className="Toolbar">
+const toolbar = (props) => {
+  return (
+    <div className="Toolbar">
   <img src="/assets/images/sport-rent.png" alt="logo" height="55px"/>
-  <div>searchbar</div>
+  <input
+  type="text"
+  onChange={props.changed}
+  searchValue={props.searchValue}
+  />
   <div>cart</div>
   </div>
-)
+  )}
 
 export default toolbar;

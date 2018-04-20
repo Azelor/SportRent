@@ -1,7 +1,11 @@
-.Store {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  width: 80%;
-  margin: auto;
+.Selection {
+  margin-left: 160px;
 }
+
+.Sidebar {
+  margin-top: 10px;
+  width: 145px;
+  float: left;
+  padding-left: 10px;
+}
+

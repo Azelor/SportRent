@@ -1,0 +1,19 @@
+.Button {
+  width: 150px;
+  margin-bottom: 5px;
+	color: #666;
+  background-color: #eee;
+  box-shadow: 0 2px 3px #ccc;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 12px;
+	padding: 10px 30px;
+	border-radius: 3px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-bottom-width: 3px;
+}
+
+.Button:hover,
+.Button:active {
+  background-color: #C0DDF5;
+}
