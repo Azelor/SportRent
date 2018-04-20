@@ -42,17 +42,19 @@ class Store extends Component {
     let products = "";
     if (this.state.category === "all") {
       products = this.state.products.map(product => {
-        if (product.name.includes(this.state.searchValue)) {
+        if (product.name.toLowerCase().includes(this.state.searchValue)) {
         return <Product 
         key={product.id}
         name={product.name}
         price={product.price}
         brand={product.brand}
         img={product.img} />
-    }})} else {
+    } else return null
+  
+  })} else {
       products = this.state.products.map(product => {
       if (product.category === this.state.category
-      && product.name.includes(this.state.searchValue)
+      && product.name.toLowerCase().includes(this.state.searchValue)
       ) {
         return <Product 
         key={product.id}
