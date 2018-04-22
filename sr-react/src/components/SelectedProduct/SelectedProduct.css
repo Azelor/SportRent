@@ -23,11 +23,13 @@
   color: maroon;
 }
 
-.SelectedProduct img {
-  float: left;
-  margin-right: 15px;
-}
 
 .SelectedProductDescription {
-  
+  height: 100%;
+}
+
+.SelectedProductImage {
+  float: left;
+  margin-right: 15px;
+  height: 100%;
 }

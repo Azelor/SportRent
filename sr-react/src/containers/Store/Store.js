@@ -35,11 +35,21 @@ class Store extends Component {
   }
 
   selectButtonHandler = (buttonId) => {
-    this.setState({category: buttonId});
+    this.setState({
+      category: buttonId, 
+      searchValue: ""});
   };
 
   selectProductHandler = (productId) => {
-    this.setState({product: productId})
+    this.setState({product: productId});
+  }
+
+  keyPressHandler = (event) => {
+    if (event.key === 'Enter') {
+      this.setState({
+        category: "all",
+        product: null
+    });}
   }
 
   render() { // If category "all" is selected, render all products, else render conditionally, based on selection
@@ -55,7 +65,7 @@ class Store extends Component {
         brand={product.brand}
         img={product.img}
         changed={() => this.selectProductHandler(product.id)}  />
-    } else return null
+    } else return null;
   
   })} else {
       products = this.state.products.map(product => {
@@ -77,7 +87,11 @@ class Store extends Component {
 
     return (
       <div>
-        <Toolbar changed={this.searchValueHandler}/>
+        <Toolbar 
+        changed={this.searchValueHandler} 
+        search={this.keyPressHandler}
+        //value={this.state.searchValue
+        />
         <div className="Sidebar">
           <SelectionButtons 
           categories={this.state.allCategories}

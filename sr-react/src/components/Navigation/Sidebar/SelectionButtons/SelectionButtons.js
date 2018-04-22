@@ -8,8 +8,6 @@ const selectionButtons = (props) => {
     return <SelectionButton selectButtonHandler={props.selectButtonHandler} key={obj+"-key"} name={obj}/>
   })
 
-  
-  // <SelectionButton button={props.button} name={"All categories"}/>  to be implemented later and added to the div below
   return(
   <div>
     {transformedCategories}

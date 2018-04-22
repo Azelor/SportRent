@@ -14,10 +14,11 @@ class SelectedProduct extends Component {
   render() {
     return (
       <div className="SelectedProduct">
-        <img src={this.state.product.img} alt="ski" width="300"/>
-        <div className="SelectedProductName">{this.state.product.name}</div>
-        <div className="SelectedProductPrice">{"€"+this.state.product.price}</div>
+        <div className="SelectedProductImage"><img src={this.state.product.img} alt="ski" width="300"/></div>
+        
         <div className="SelectedProductDescription">
+          <div className="SelectedProductName">{this.state.product.name}</div>
+          <div className="SelectedProductPrice">{"€"+this.state.product.price}</div>
           <p>Product description:</p>
           <p>{this.state.product.description}</p>
         </div>
