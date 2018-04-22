@@ -1,5 +1,6 @@
 .Button {
-  width: 150px;
+  width: 90px;
+  text-align: center;
   margin-bottom: 5px;
 	color: #666;
   background-color: #eee;
@@ -10,10 +11,15 @@
 	padding: 10px 30px;
 	border-radius: 3px;
 	border: 1px solid rgba(0,0,0,0.3);
-	border-bottom-width: 3px;
+  border-bottom-width: 3px;
+
 }
 
 .Button:hover,
 .Button:active {
   background-color: #C0DDF5;
+}
+
+.NavLink {
+  text-decoration: none;
 }

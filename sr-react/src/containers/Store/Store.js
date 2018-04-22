@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route, Switch } from 'react-router-dom';
 
 import Product from '../../components/Product/Product';
 import SelectedProduct from '../../components/SelectedProduct/SelectedProduct';
@@ -12,7 +13,8 @@ class Store extends Component {
     products: [],
     category: "all",
     allCategories: ["all"],
-    searchValue: ""
+    searchValue: "",
+    product: null
   }
 
   componentDidMount() {
@@ -30,38 +32,44 @@ class Store extends Component {
   searchValueHandler = (event) => {
     const newValue = event.target.value;
     this.setState({searchValue: newValue});
-
   }
 
-  selectButtonHandler = (param) => {
-    this.setState({category: param});
+  selectButtonHandler = (buttonId) => {
+    this.setState({category: buttonId});
   };
 
+  selectProductHandler = (productId) => {
+    this.setState({product: productId})
+  }
 
   render() { // If category "all" is selected, render all products, else render conditionally, based on selection
     let products = "";
     if (this.state.category === "all") {
       products = this.state.products.map(product => {
-        if (product.name.toLowerCase().includes(this.state.searchValue)) {
+        if (product.name.toLowerCase().includes(this.state.searchValue.toLowerCase())) {
         return <Product 
         key={product.id}
+        id={product.id}
         name={product.name}
         price={product.price}
         brand={product.brand}
-        img={product.img} />
+        img={product.img}
+        changed={() => this.selectProductHandler(product.id)}  />
     } else return null
   
   })} else {
       products = this.state.products.map(product => {
       if (product.category === this.state.category
-      && product.name.toLowerCase().includes(this.state.searchValue)
+      && product.name.toLowerCase().includes(this.state.searchValue.toLowerCase())
       ) {
         return <Product 
         key={product.id}
+        id={product.id}
         name={product.name}
         price={product.price}
         brand={product.brand}
-        img={product.img} />
+        img={product.img}
+        changed={() => this.selectProductHandler(product.id)} />
       } else {
         return null;
       }
@@ -75,10 +83,15 @@ class Store extends Component {
           categories={this.state.allCategories}
           selectButtonHandler={this.selectButtonHandler} />
         </div>
-        <div className="Selection">
-          {products}
-        </div>
-        <SelectedProduct />
+        <Switch>
+          <Route 
+            path={"/" + this.state.product} 
+            exact 
+            render={(props) => <SelectedProduct {...props} /> } />
+          <Route 
+            path='/' 
+            render={() => <div className="Selection">{products}</div>} />
+        </Switch>
       </div>
     );
   }

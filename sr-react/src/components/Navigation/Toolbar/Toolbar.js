@@ -9,7 +9,7 @@ const toolbar = (props) => {
   <input
   type="text"
   onChange={props.changed}
-  searchValue={props.searchValue}
+  searchvalue={props.searchValue}
   />
   <div>cart</div>
   </div>

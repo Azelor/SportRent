@@ -1,0 +1,33 @@
+.SelectedProduct {
+  width: 800px;
+  height: 600px;
+  padding: 8px;
+  text-align: left;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  margin: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  float: left;
+  border-radius: 3px;
+}
+
+
+.SelectedProductName {
+  font-size: 200%;
+  text-transform: uppercase;
+}
+
+.SelectedProductPrice {
+  font-size: 150%;
+  color: maroon;
+}
+
+.SelectedProduct img {
+  float: left;
+  margin-right: 15px;
+}
+
+.SelectedProductDescription {
+  
+}

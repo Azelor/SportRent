@@ -1,19 +1,28 @@
 import React, {Component} from 'react';
-//import axios from 'axios';
+import axios from 'axios';
 
-//import Product from '../Product/Product';
+import './SelectedProduct.css'
 
 class SelectedProduct extends Component {
-  state = {
-    
-  }
+  state = {product: []}
+  componentDidMount() {
+    axios.get('/products'+this.props.location.pathname)
+    .then(response => {
+      this.setState({product: response.data});
+    })};
 
   render() {
     return (
-      <div >
-
+      <div className="SelectedProduct">
+        <img src={this.state.product.img} alt="ski" width="300"/>
+        <div className="SelectedProductName">{this.state.product.name}</div>
+        <div className="SelectedProductPrice">{"€"+this.state.product.price}</div>
+        <div className="SelectedProductDescription">
+          <p>Product description:</p>
+          <p>{this.state.product.description}</p>
+        </div>
       </div>
-    );
+    )
   }
 }
 
