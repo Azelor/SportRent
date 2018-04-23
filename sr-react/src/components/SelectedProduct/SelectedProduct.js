@@ -18,7 +18,7 @@ class SelectedProduct extends Component {
         <div className="SelectedProductBox">
           <div className="SelectedProductName">{this.state.product.name}</div>
           <div className="SelectedProductPrice">{"€"+this.state.product.price}</div>
-          <div className="SelectedProductButton"><button>ADD TO CART</button></div>
+          <div className="SelectedProductButton"><button onClick={this.props.add}>ADD TO CART</button></div>
           <div className="SelectedProductDescription"><p>{this.state.product.description}</p></div>
         </div>
       </div>

@@ -1,0 +1,11 @@
+.CartContainer {
+  float: right;
+  width: 400px;
+}
+
+.Cart {
+  position: fixed;
+  background-color: rgb(155, 154, 154, 0.5);
+  height: 400px;
+  width: 400px;
+}

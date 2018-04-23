@@ -7,6 +7,7 @@ import SelectedProduct from '../../components/SelectedProduct/SelectedProduct';
 import SelectionButtons from '../../components/Navigation/Sidebar/SelectionButtons/SelectionButtons';
 import './Store.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import Cart from '../../components/Cart/Cart';
 
 class Store extends Component {
   state = {
@@ -14,7 +15,8 @@ class Store extends Component {
     category: "all",
     allCategories: ["all"],
     searchValue: "",
-    product: null
+    product: null,
+    cart: []
   }
 
   componentDidMount() {
@@ -52,6 +54,14 @@ class Store extends Component {
     });}
   }
 
+  addToCartHandler = (id) => {
+    //console.log("added to cart")
+    //console.log(this.state.products[id-1]);
+    const updatedCart = [...this.state.cart , this.state.products[id-1]]
+    //console.log updatedCart);
+    this.setState({cart: updatedCart})
+  }
+
   render() { // If category "all" is selected, render all products, else render conditionally, based on selection
     let products = "";
     if (this.state.category === "all") {
@@ -85,8 +95,12 @@ class Store extends Component {
       }
     })};
 
+    
+
     return (
       <div>
+        <Cart cart={this.state.cart} />
+        
         <Toolbar 
         changed={this.searchValueHandler} 
         search={this.keyPressHandler}
@@ -101,7 +115,7 @@ class Store extends Component {
             <Route 
               path={"/" + this.state.product} 
               exact 
-              render={(props) => <SelectedProduct {...props} /> } />
+              render={(props) => <SelectedProduct {...props} add={() => this.addToCartHandler(this.state.product)} /> } />
             <Route 
               path='/' 
               component={() => <div>{products}</div>} />

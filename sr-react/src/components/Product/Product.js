@@ -11,7 +11,6 @@ const product = (props) => (
       <div className="Brand">{props.brand}</div>
       <div className="Price">{"€"+props.price}</div>
       <div className="Category">{props.category}</div>
-      <div>{props.description}</div>
     </div>
   </NavLink>
 
