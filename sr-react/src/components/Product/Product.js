@@ -4,7 +4,7 @@ import './Product.css';
 import { NavLink } from 'react-router-dom';
 
 const product = (props) => (
-  <NavLink onClick={props.changed} to={"/"+props.id}>
+  <NavLink onClick={props.clicked} to={"/"+props.id}>
     <div className="Product">
       <img src={props.img} alt="ski" width="180"/>
       <div className="Name">{props.name}</div>

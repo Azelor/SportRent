@@ -64,7 +64,7 @@ class Store extends Component {
         price={product.price}
         brand={product.brand}
         img={product.img}
-        changed={() => this.selectProductHandler(product.id)}  />
+        clicked={() => this.selectProductHandler(product.id)}  />
     } else return null;
   
   })} else {
@@ -79,7 +79,7 @@ class Store extends Component {
         price={product.price}
         brand={product.brand}
         img={product.img}
-        changed={() => this.selectProductHandler(product.id)} />
+        clicked={() => this.selectProductHandler(product.id)} />
       } else {
         return null;
       }
@@ -90,22 +90,23 @@ class Store extends Component {
         <Toolbar 
         changed={this.searchValueHandler} 
         search={this.keyPressHandler}
-        //value={this.state.searchValue
         />
         <div className="Sidebar">
           <SelectionButtons 
           categories={this.state.allCategories}
           selectButtonHandler={this.selectButtonHandler} />
         </div>
-        <Switch>
-          <Route 
-            path={"/" + this.state.product} 
-            exact 
-            render={(props) => <SelectedProduct {...props} /> } />
-          <Route 
-            path='/' 
-            render={() => <div className="Selection">{products}</div>} />
-        </Switch>
+        <div className="MainArea">
+          <Switch>
+            <Route 
+              path={"/" + this.state.product} 
+              exact 
+              render={(props) => <SelectedProduct {...props} /> } />
+            <Route 
+              path='/' 
+              component={() => <div>{products}</div>} />
+          </Switch>
+        </div>
       </div>
     );
   }

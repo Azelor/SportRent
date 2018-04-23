@@ -15,12 +15,11 @@ class SelectedProduct extends Component {
     return (
       <div className="SelectedProduct">
         <div className="SelectedProductImage"><img src={this.state.product.img} alt="ski" width="300"/></div>
-        
-        <div className="SelectedProductDescription">
+        <div className="SelectedProductBox">
           <div className="SelectedProductName">{this.state.product.name}</div>
           <div className="SelectedProductPrice">{"€"+this.state.product.price}</div>
-          <p>Product description:</p>
-          <p>{this.state.product.description}</p>
+          <div className="SelectedProductButton"><button>ADD TO CART</button></div>
+          <div className="SelectedProductDescription"><p>{this.state.product.description}</p></div>
         </div>
       </div>
     )

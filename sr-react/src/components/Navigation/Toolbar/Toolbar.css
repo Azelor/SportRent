@@ -5,12 +5,41 @@
   top: 0;
   left: 0;
   background-color: #5D8CBB;
-  display: flex;
+  display: inline-block;
   justify-content: space-between;
-  align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
   z-index: 90;
   font-weight: bold;
   color: white;
+}
+
+.Toolbar input {
+  float: left;
+  display: block;
+  width: 400px;
+  height: 25px;
+  padding-left: 10px;
+  left: 100px;
+  margin-left: 95px;
+  margin-top: 15px; 
+  border-radius: 4px;
+}
+.Logo {
+  float: left;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.CartButton {
+  float: right;
+  margin-top: 5px;
+  padding: 3px;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.CartButton:hover{
+ background-color: gray;
 }
