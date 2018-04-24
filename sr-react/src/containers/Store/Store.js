@@ -18,6 +18,7 @@ class Store extends Component {
     searchValue: "",
     product: null,
     cart: [],
+    cartIds: [],
     showCart: false
   }
 
@@ -63,8 +64,18 @@ class Store extends Component {
   }
 
   addToCartHandler = (id) => {
-    const updatedCart = [...this.state.cart , this.state.products[id-1]]
-    this.setState({cart: updatedCart})
+    let updatedCartIds = [];
+    if (!this.state.cartIds.includes(id)) {
+      updatedCartIds = [...this.state.cartIds, id]
+      const updatedCart = [...this.state.cart , this.state.products[id-1]]
+        this.setState({
+      cart: updatedCart,
+      cartIds: updatedCartIds})
+    }
+    
+    
+    
+    
   }
 
   cartClosedHandler = () => {
@@ -115,7 +126,7 @@ class Store extends Component {
     return (
       <div>
         <Backdrop show={this.state.showCart} clicked={this.cartClosedHandler}/>
-        <Cart cart={this.state.cart} cartOpen={this.state.showCart}/>
+        <Cart cart={this.state.cart} cartIds={this.state.cartIds} cartOpen={this.state.showCart}/>
         
         <Toolbar 
         changed={this.searchValueHandler} 
@@ -134,7 +145,10 @@ class Store extends Component {
             <Route 
               path={"/" + this.state.product} 
               exact 
-              render={(props) => <SelectedProduct {...props} add={() => this.addToCartHandler(this.state.product)} /> } />
+              render={(props) => <SelectedProduct 
+                {...props} 
+                cartIds={this.state.cartIds} 
+                add={() => this.addToCartHandler(this.state.product)} /> } />
             <Route 
               path='/' 
               component={() => <div>{products}</div>} />

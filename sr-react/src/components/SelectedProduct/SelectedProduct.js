@@ -8,6 +8,12 @@ class SelectedProduct extends Component {
     product: [],
     buttonText: "ADD TO CART"
   }
+  componentWillMount() {
+    if (this.props.cartIds.includes(parseInt(this.props.location.pathname.substr(1),10)) ) {
+      this.setState({buttonText: "ALREADY IN CART"});
+    }
+  }
+
   componentDidMount() {
     axios.get('/products'+this.props.location.pathname)
     .then(response => {
@@ -18,7 +24,9 @@ class SelectedProduct extends Component {
   render() {
     let buttonStyle = this.state.buttonText;
     if (this.state.buttonText === "ADDED!") {
-      buttonStyle = "SelectedProductButtonAdded"
+      buttonStyle = "SelectedProductButtonAdded";
+    } else if (this.state.buttonText === "ALREADY IN CART") {
+      buttonStyle = "SelectedProductButtonAlreadyAdded";
     }
     return (
       <div className="SelectedProduct">
@@ -28,9 +36,12 @@ class SelectedProduct extends Component {
           <div className="SelectedProductPrice">{"€"+this.state.product.price}</div>
           <div className={buttonStyle}>
             <button onClick={()=>{
-              this.props.add(); 
-              this.setState({buttonText: "ADDED!"})
-              }}>{this.state.buttonText}</button></div>
+              if (buttonStyle === "SelectedProductButtonAlreadyAdded") {
+                return;
+              } else {
+                this.props.add(); 
+                this.setState({buttonText: "ADDED!"})
+              }}}>{this.state.buttonText}</button></div>
           <div className="SelectedProductDescription"><p>{this.state.product.description}</p></div>
         </div>
       </div>

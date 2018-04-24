@@ -25,11 +25,11 @@
   cursor: pointer;
   outline: none;
 }
-
+ 
 .SelectedProduct button:active,
 .SelectedProduct button:hover {
   background-color: #C0DDF5;
-}
+} 
 
 .SelectedProductButtonAdded button {
   background-color: mediumseagreen;
@@ -39,6 +39,15 @@
 .SelectedProductButtonAdded button:hover {
   background-color: seagreen;
   border: 1px solid seagreen;
+}
+
+.SelectedProductButtonAlreadyAdded button,
+.SelectedProductButtonAlreadyAdded button:hover,
+.SelectedProductButtonAlreadyAdded button:active {
+  background-color: gray;
+  color: white;
+  border: 1px solid gray;
+  cursor: auto;
 }
 
 .SelectedProductName {
