@@ -7,6 +7,8 @@ const cartItem = (props) => (
       <div><img src={props.img} alt="ski" height="50"/></div>
       <div>{props.name}</div>
       <div>{"€"+props.price}</div>
+      <button>+</button>
+      <button>-</button>
     </div>
 )
 

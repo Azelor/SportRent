@@ -1,0 +1,14 @@
+.CartToggle {
+  float: right;
+  margin-top: 5px;
+  padding: 3px;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.CartToggle:hover,
+.CartOpen{
+ background-color: gray;
+}
+

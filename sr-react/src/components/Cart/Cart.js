@@ -5,8 +5,6 @@ import './Cart.css';
 import CartItem from './CartItem/CartItem';
 
 class Cart extends Component {
-
-
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -15,17 +13,24 @@ class Cart extends Component {
   }
 
   render() {
-    
+    let cartVisibility = "CartContainerHidden";
+    if (this.props.cartOpen) {
+      cartVisibility = "CartContainer"
+    }
+
+    if (this.props.cartOpen === true) console.log("open")
+    if (this.props.cartOpen === false) console.log("false")
     let cart = this.props.cart.map(item => {
       return <CartItem
       name={item.name}
       price={item.price}
       img={item.img} />
     });
+    
 
     return (
-      <div className="CartContainer">
-        <div className="Cart">{cart}</div>
+      <div className={cartVisibility}>
+        <div className="Cart"><Scrollbars>{cart}</Scrollbars></div>
       </div>
       
     );

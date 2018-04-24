@@ -9,3 +9,7 @@
   height: 400px;
   width: 400px;
 }
+
+.CartContainerHidden {
+  transform: translateX(-100%);
+}

@@ -16,7 +16,8 @@ class Store extends Component {
     allCategories: ["all"],
     searchValue: "",
     product: null,
-    cart: []
+    cart: [],
+    showCart: false
   }
 
   componentDidMount() {
@@ -62,6 +63,17 @@ class Store extends Component {
     this.setState({cart: updatedCart})
   }
 
+  cartClosedHandler = () => {
+    this.setState({showCart : false})
+    console.log("cart closed")
+  }
+
+  cartToggleHandler = () => {
+    this.setState( (prevState) => {
+      return {showCart: !prevState.showCart};
+    } );
+  }
+
   render() { // If category "all" is selected, render all products, else render conditionally, based on selection
     let products = "";
     if (this.state.category === "all") {
@@ -99,11 +111,14 @@ class Store extends Component {
 
     return (
       <div>
-        <Cart cart={this.state.cart} />
+        <Cart cart={this.state.cart} cartOpen={this.state.showCart}/>
         
         <Toolbar 
         changed={this.searchValueHandler} 
         search={this.keyPressHandler}
+        quantity={this.state.cart.length}
+        toggleCart={this.cartToggleHandler}
+        cartOpen={this.state.showCart}
         />
         <div className="Sidebar">
           <SelectionButtons 
