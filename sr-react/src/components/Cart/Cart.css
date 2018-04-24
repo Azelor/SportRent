@@ -1,15 +1,52 @@
 .CartContainer {
+  margin-right: 20px;
   float: right;
   width: 400px;
 }
 
 .Cart {
   position: fixed;
-  background-color: rgb(155, 154, 154, 0.5);
-  height: 400px;
+  height: 350px;
   width: 400px;
+}
+
+.CartArea {
+  position: fixed;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  width: 400px;
+  height: 400px;
+  z-index: 200;
 }
 
 .CartContainerHidden {
   transform: translateX(-100%);
+}
+
+.CheckoutButton {
+  position: fixed;
+  width: 400px;
+  height:50px;
+}
+
+.CheckoutButton button {
+  width: 300px;
+  text-align: center;
+  margin-left: 50px;
+  margin-top: 5px;
+	color: #666;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 12px;
+	padding: 10px 30px;
+	border-radius: 3px;
+  border: 1px solid #eee;
+  cursor: pointer;
+  outline: none;
+}
+
+.CheckoutButton button:active,
+.CheckoutButton button:hover {
+  background-color: #C0DDF5;
 }

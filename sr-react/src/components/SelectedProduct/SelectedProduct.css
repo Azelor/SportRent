@@ -23,6 +23,7 @@
 	border-radius: 3px;
   border: 1px solid #eee;
   cursor: pointer;
+  outline: none;
 }
 
 .SelectedProduct button:active,
@@ -30,7 +31,15 @@
   background-color: #C0DDF5;
 }
 
-
+.SelectedProductButtonAdded button {
+  background-color: mediumseagreen;
+  border: 1px solid mediumseagreen;
+  color: white;
+}
+.SelectedProductButtonAdded button:hover {
+  background-color: seagreen;
+  border: 1px solid seagreen;
+}
 
 .SelectedProductName {
   font-size: 200%;
@@ -45,7 +54,6 @@
 
 .SelectedProductBox {
   height: 100%;
-  flow: left;
 }
 
 .SelectedProductImage {

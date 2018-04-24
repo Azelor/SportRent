@@ -17,9 +17,6 @@ class Cart extends Component {
     if (this.props.cartOpen) {
       cartVisibility = "CartContainer"
     }
-
-    if (this.props.cartOpen === true) console.log("open")
-    if (this.props.cartOpen === false) console.log("false")
     let cart = this.props.cart.map(item => {
       return <CartItem
       name={item.name}
@@ -30,7 +27,12 @@ class Cart extends Component {
 
     return (
       <div className={cartVisibility}>
-        <div className="Cart"><Scrollbars>{cart}</Scrollbars></div>
+        <div className="CartArea">
+          <div className="Cart">
+            <Scrollbars>{cart}</Scrollbars>
+            <div className="CheckoutButton"><button>PROCEED TO CHECKOUT</button></div>
+          </div>
+        </div>
       </div>
       
     );

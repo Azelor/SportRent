@@ -8,6 +8,7 @@ import SelectionButtons from '../../components/Navigation/Sidebar/SelectionButto
 import './Store.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import Cart from '../../components/Cart/Cart';
+import Backdrop from '../../components/Backdrop/Backdrop';
 
 class Store extends Component {
   state = {
@@ -49,23 +50,25 @@ class Store extends Component {
 
   keyPressHandler = (event) => {
     if (event.key === 'Enter') {
+      if (this.state.showCart) {
+        this.setState({
+          category: "all",
+          product: null,
+          showCart: false
+      })} else {
       this.setState({
         category: "all",
         product: null
-    });}
+      });}}
   }
 
   addToCartHandler = (id) => {
-    //console.log("added to cart")
-    //console.log(this.state.products[id-1]);
     const updatedCart = [...this.state.cart , this.state.products[id-1]]
-    //console.log updatedCart);
     this.setState({cart: updatedCart})
   }
 
   cartClosedHandler = () => {
     this.setState({showCart : false})
-    console.log("cart closed")
   }
 
   cartToggleHandler = () => {
@@ -111,6 +114,7 @@ class Store extends Component {
 
     return (
       <div>
+        <Backdrop show={this.state.showCart} clicked={this.cartClosedHandler}/>
         <Cart cart={this.state.cart} cartOpen={this.state.showCart}/>
         
         <Toolbar 
