@@ -17,9 +17,8 @@ class Store extends Component {
     allCategories: ["all"],
     searchValue: "",
     product: null,
-    cart: [],
-    cartIds: [],
-    showCart: false
+    showCart: false,
+    cartItems: {}
   }
 
   componentDidMount() {
@@ -64,19 +63,38 @@ class Store extends Component {
   }
 
   addToCartHandler = (id) => {
-    let updatedCartIds = [];
-    if (!this.state.cartIds.includes(id)) {
-      updatedCartIds = [...this.state.cartIds, id]
-      const updatedCart = [...this.state.cart , this.state.products[id-1]]
+    if (!this.state.cartItems.hasOwnProperty(id)) {
+      let updatedCartItems = {...this.state.cartItems,
+        [id]: [1, this.state.products[id-1].price, this.state.products[id-1] ]}
         this.setState({
-      cart: updatedCart,
-      cartIds: updatedCartIds})
+      cartItems: updatedCartItems})
     }
-    
-    
-    
-    
   }
+
+  increaseQuantityHandler = (id) => {
+    const prevItemValues = this.state.cartItems[id];
+    const newQuantity = prevItemValues[0]+1;
+    const newPrice = parseFloat((prevItemValues[1]+this.state.products[id-1].price).toFixed(2));
+    const updatedCartItems = {...this.state.cartItems}
+    updatedCartItems[id] = [newQuantity, newPrice, prevItemValues[2] ];
+    this.setState({cartItems: updatedCartItems});
+  }
+
+  decreaseQuantityHandler = (id) => { 
+    const updatedCartItems = {...this.state.cartItems}
+    const prevItemValues = updatedCartItems[id]
+    if (prevItemValues[0] === 1) {
+      delete updatedCartItems[id]
+      this.setState({
+        cartItems: updatedCartItems })
+    } else {
+    const prevItemValues = this.state.cartItems[id];
+    const newQuantity = prevItemValues[0]-1;
+    const newPrice = parseFloat((prevItemValues[1]-this.state.products[id-1].price).toFixed(2));
+    
+    updatedCartItems[id] = [newQuantity, newPrice, prevItemValues[2] ];
+    this.setState({cartItems: updatedCartItems});
+  } }
 
   cartClosedHandler = () => {
     this.setState({showCart : false})
@@ -121,19 +139,20 @@ class Store extends Component {
       }
     })};
 
-    
-
     return (
       <div>
         <Backdrop show={this.state.showCart} clicked={this.cartClosedHandler}/>
-        <Cart cart={this.state.cart} cartIds={this.state.cartIds} cartOpen={this.state.showCart}/>
-        
+        <Cart  
+          cartOpen={this.state.showCart}
+          cartItems={this.state.cartItems}
+          add={this.increaseQuantityHandler}
+          remove={this.decreaseQuantityHandler}/>
         <Toolbar 
-        changed={this.searchValueHandler} 
-        search={this.keyPressHandler}
-        quantity={this.state.cart.length}
-        toggleCart={this.cartToggleHandler}
-        cartOpen={this.state.showCart}
+          changed={this.searchValueHandler} 
+          search={this.keyPressHandler}
+          quantity={Object.keys(this.state.cartItems).length}
+          toggleCart={this.cartToggleHandler}
+          cartOpen={this.state.showCart}
         />
         <div className="Sidebar">
           <SelectionButtons 
@@ -147,7 +166,7 @@ class Store extends Component {
               exact 
               render={(props) => <SelectedProduct 
                 {...props} 
-                cartIds={this.state.cartIds} 
+                cartItems={this.state.cartItems}
                 add={() => this.addToCartHandler(this.state.product)} /> } />
             <Route 
               path='/' 

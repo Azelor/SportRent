@@ -9,7 +9,7 @@ class SelectedProduct extends Component {
     buttonText: "ADD TO CART"
   }
   componentWillMount() {
-    if (this.props.cartIds.includes(parseInt(this.props.location.pathname.substr(1),10)) ) {
+    if (this.props.cartItems.hasOwnProperty(parseInt(this.props.location.pathname.substr(1),10)) ) {
       this.setState({buttonText: "ALREADY IN CART"});
     }
   }

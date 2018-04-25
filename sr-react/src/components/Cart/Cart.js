@@ -5,12 +5,8 @@ import './Cart.css';
 import CartItem from './CartItem/CartItem';
 
 class Cart extends Component {
-  state = {cartIds: []}
 
   componentDidMount = () => {
-    // this.setState((prevState) => {
-    //   return {cartIds: prevState.cartIds};
-    // })
     window.addEventListener('scroll', this.handleScroll);
   }
   componentWillUnmount() {
@@ -23,24 +19,34 @@ class Cart extends Component {
     if (this.props.cartOpen) {
       cartVisibility = "CartContainer"
     }
-    let cart = this.props.cart.map(item => {
-      //console.log(prevProps)
-      //console.log(this.props.prevProps)
-      // console.log(this.props.cartIds);
-      // console.log(item.id);
-      // if (this.props.cartIds.includes(item.id)) {
-      //   console.log("includes in cart");
-      //   return null;
-      // }
+    // let cart2 = this.props.cartItems.map(item => {
+    //   console.log(item);
+    // })
+    let newCart = [];
+    for (var key in this.props.cartItems) {
+      //if (this.props.cartItems[key][0]>1) console.log("big1")
+      //console.log(this.props.cartItems[key][2])
+      newCart.push(this.props.cartItems[key][2])
+    }
+    console.log(newCart)
+
+    //console.log(this.props.cartItems)
+
+    let cart = newCart.map(item => {
+      //console.log(this.props.cartItems[item.id])
       return <CartItem
       key={item.id}
+      id={item.id}
       name={item.name}
       price={item.price}
-      img={item.img} />
-    
+      img={item.img}
+      attributes={this.props.cartItems[item.id]}
+      add={this.props.add} 
+      remove={this.props.remove}
+      // quantity={this.props.cartItems.keys(item.id)[0]}
+      />
     });
     
-
     return (
       <div className={cartVisibility}>
         <div className="CartArea">
