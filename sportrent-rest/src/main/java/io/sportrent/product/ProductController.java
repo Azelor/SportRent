@@ -1,10 +1,9 @@
-package io.sportrent.product;
+	package io.sportrent.product;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,14 +16,13 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@CrossOrigin
 	@RequestMapping("/products")
 	public List<Product> getAllProducts() {
 		return productService.getAllProducts();
 	}
 	
 	@RequestMapping("/products/{id}")
-	public Optional<Product> getProduct(@PathVariable String id) {
+	public Optional<Product> getProduct(@PathVariable Integer id) {
 		return productService.getProduct(id);
 	}
 	
@@ -34,12 +32,12 @@ public class ProductController {
 	}
 		
 	@RequestMapping(method=RequestMethod.PUT, value="/products/{id}")
-	public void updateProduct(@RequestBody Product product, @PathVariable String id) {
+	public void updateProduct(@RequestBody Product product, @PathVariable Integer id) {
 		productService.updateProduct(id, product);
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/products/{id}")
-	public void deleteProduct(@PathVariable String id) {
+	public void deleteProduct(@PathVariable Integer id) {
 		productService.deleteProduct(id);
 	}
 }

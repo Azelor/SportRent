@@ -21,7 +21,7 @@ public class ProductService {
 		return products;
 	}
 	
-	public Optional<Product> getProduct(String id) {
+	public Optional<Product> getProduct(Integer id) {
 		return productRepository.findById(id);
 	}
 
@@ -29,11 +29,11 @@ public class ProductService {
 		productRepository.save(product);
 	}
 
-	public void updateProduct(String id, Product product) {
+	public void updateProduct(Integer id, Product product) {
 		productRepository.save(product);
 	}
 
-	public void deleteProduct(String id) {
+	public void deleteProduct(Integer id) {
 		productRepository.deleteById(id);
 	}
 	
