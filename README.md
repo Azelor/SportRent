@@ -26,6 +26,17 @@ Antud aine raames keskendume spordivarustuse rentimise funktsionaalsusele ehk
 - Kasutajakontode loomise funktsionaalsus
 - Brauseri sessiooni põhine ostukorv
 
+### 3. iteratsioon
+- Toote kategooriate dünaamiline kuvamine lähtuvalt andmetest
+- Lehekülgede vaheline liiklemine (routing) 
+- Ostukorvi täiendused (koguste muutmine ja hinna arvutamine)
+- Toodete otsimise funktsionaalsus
+- Kasutajakontod ja toodete lisamise võimalus vastava õigustega kasutajatele
+
+
+## Trello Kanban board
+
+https://trello.com/b/F4rhfed7/agile-board
 
 ## Dokumendid Google Drive's
 
