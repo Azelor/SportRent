@@ -9,6 +9,7 @@ import './Store.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import Cart from '../../components/Cart/Cart';
 import Backdrop from '../../components/Backdrop/Backdrop';
+import Registration from '../Registration/Registration';
 
 class Store extends Component {
   state = {
@@ -168,6 +169,10 @@ class Store extends Component {
                 {...props} 
                 cartItems={this.state.cartItems}
                 add={() => this.addToCartHandler(this.state.product)} /> } />
+            <Route 
+              exact
+              path='/register' 
+              component={() => <Registration />} />
             <Route 
               path='/' 
               component={() => <div>{products}</div>} />
